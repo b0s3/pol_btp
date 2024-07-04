@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service def for monitoring API'
+define service ZFS_SRV_MONITOR_PROC1 {
+  expose ZFSTB_C_PROCESS_LOG;
+  expose ZFS_C_MONITOR_PROC;
+  expose ZFSTB_E_PROCLOG_QV;
+}

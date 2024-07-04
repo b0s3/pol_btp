@@ -1,0 +1,5 @@
+CLASS zbp_fs_r_monitor_proc1 DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zfs_r_monitor_proc.
+ENDCLASS.
+
+CLASS zbp_fs_r_monitor_proc1 IMPLEMENTATION.
+ENDCLASS.

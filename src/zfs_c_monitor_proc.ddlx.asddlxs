@@ -1,0 +1,92 @@
+@Metadata.layer: #CORE
+@UI:
+{ 
+  headerInfo:{ 
+  title: { type:#STANDARD, value : 'ProcessCategory'  }
+  //description: { label: 'Process UUID', value : 'ProcessUuid' }  
+  }
+  
+
+
+}
+annotate view ZFS_C_MONITOR_PROC
+  with 
+{
+  
+  @UI.facet: [
+        
+      {
+          id              :   'ProcessUuid',
+          purpose         :   #HEADER,
+          type            :   #DATAPOINT_REFERENCE,
+          targetQualifier :   'ProcessUuid',
+          position        :   10
+      },
+      {
+          id              :   'CreatedBy',
+          purpose         :   #HEADER,
+          type            :   #DATAPOINT_REFERENCE,
+          targetQualifier :   'CreatedBy',
+          position        :   20
+      },
+      {
+          id              :   'statusCode',
+          purpose         :   #HEADER,
+          type            :   #DATAPOINT_REFERENCE,
+          position        :   30,
+          targetQualifier :   'ProcessStatusCode'
+      },
+      {
+          id              :   'ProcessLog',
+          purpose         :   #STANDARD,
+          type            :   #LINEITEM_REFERENCE,
+          label           :   'Process Log',
+          position        :   10,
+          targetElement   :   'ProcessLog'
+             
+      }
+]
+ @UI.lineItem: [{ position: 10 },
+                 { type: #FOR_ACTION,
+                   dataAction: 'RetryProcessObject' ,
+                   label: 'Retry'}]
+//  @UI.identification : [
+//     { type: #FOR_ACTION,  dataAction: 'RetryProcessObject' , label: 'Retry', position: 20 } ]
+
+           
+ @UI.dataPoint:{ qualifier: 'ProcessUuid', title: 'Process UUID' }
+ ProcessUuid;
+ @UI.identification : [
+     { type: #FOR_ACTION,  dataAction: 'displayPayload' , label: 'Display Payload', position: 30 } ]
+ @UI.lineItem: [{ position: 10 }]
+ @UI.selectionField: [{ position: 10 }]
+ ProcessCategory;
+ @UI.lineItem: [{ position: 20 }]
+ @UI.selectionField: [{ position: 20 }]
+ @UI.dataPoint:{ qualifier: 'ProcessStatusCode', title: 'Status Code' }
+ @UI.textArrangement: #TEXT_ONLY
+ ProcessStatusCode;
+ @UI.lineItem: [{ position: 30 }]
+ @UI.selectionField: [{ position: 30 }]
+ @UI.dataPoint:{ qualifier: 'CreatedBy', title: 'Created By' }
+ CreatedBy;
+ @UI.lineItem: [{ position: 40, label: 'Created At' }]
+ CreatedAt;
+ @UI.lineItem: [{ position: 50, label: 'Changed At' }]
+ ChangedAt; 
+ @UI.lineItem: [{ position: 60 }]
+ ReferenceObjectid;
+ @UI.lineItem: [{ position: 70 }]
+ //@UI.dataPoint:{ qualifier: 'ReferenceObjectTypecode', title: 'Ref Object Category' }
+ ReferenceObjectTypecode;
+ @UI.lineItem: [{ position: 80 }]
+ BuprId;
+  @UI.lineItem: [{ position: 90 }]
+ BuprTypeCode;
+  @UI.lineItem: [{ position: 120, label: 'Payload' }]
+ Request;
+ 
+
+ 
+  
+}

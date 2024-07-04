@@ -1,0 +1,22 @@
+projection;
+strict ( 2 );
+
+define behavior for ZFS_C_MONITOR_PROC //alias <alias_name>
+{
+  use create;
+  use update;
+//  use delete;
+
+  use action RetryProcessObject;
+  use action displayPayload;
+  use association ProcessLog { create; }
+}
+
+define behavior for ZFSTB_C_PROCESS_LOG //alias <alias_name>
+{
+  use update;
+  use delete;
+  use action displayPayload1;
+  use action displayError;
+  use association ProcessObject;
+}

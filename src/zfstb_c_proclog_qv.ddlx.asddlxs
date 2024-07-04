@@ -1,0 +1,37 @@
+@Metadata.layer: #CORE
+annotate view ZFSTB_C_PROCESS_LOG
+  with 
+{
+
+
+ @UI.lineItem: [{ position: 10, label: 'Process Step No', importance: #HIGH  }] 
+ ProcessStepNumber;
+ 
+
+
+ @UI.textArrangement: #TEXT_ONLY 
+ @UI.lineItem: [{ position: 20, label: 'Process Step Status', importance: #HIGH  }]
+ ProcessStepStatus;
+    
+ @UI.lineItem: [{ position: 30, importance: #HIGH  }]
+ CreatedBy;
+ @UI.lineItem: [{ position: 40, label: 'Created At', importance: #HIGH  }]
+ CreatedAt;
+ @UI.lineItem: [{ position: 50, importance: #HIGH  }]
+ ChangedBy;
+ @UI.lineItem: [{ position: 60, label: 'Changed At', importance: #HIGH  }]
+ ChangedAt;
+ @UI.lineItem: [{ position: 70, label: 'Reference Object ID' ,importance: #HIGH  }]
+ ReferenceObjectid;
+ @UI.lineItem: [{ position: 80, label: 'Reference Object Category', importance: #HIGH  }]
+ ReferenceObjectTypecode;
+
+  
+ //@UI.lineItem: [{dataAction: 'displayError', label: 'More Details', position: 90}]
+ 
+ //Request;
+//   @UI.lineItem: [{ position: 140, label: 'Reference Object Category', importance: #HIGH  }]
+// OutputResponse;
+// @UI.lineItem: [{ position:10, importance: #HIGH, type: #AS_CONTACT, label:'Consultant Name', value: '_ProcessStepMessage'  }]
+//  _ProcessStepMessage;
+}

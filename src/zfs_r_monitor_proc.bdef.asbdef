@@ -1,0 +1,65 @@
+managed implementation in class zbp_fs_r_monitor_proc1 unique;
+strict ( 2 );
+
+define behavior for ZFS_R_MONITOR_PROC //alias <alias_name>
+persistent table zfstb_processobj
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+
+  create;
+  update;
+  delete;
+  field ( numbering : managed, readonly ) ProcessUuid;
+  association ProcessLog { create; }
+  //action RetryProcessObject result [1]$self;
+  action ( lock : none ) RetryProcessObject result [1] $self;
+  action displayPayload result [1] $self;
+  mapping for zfstb_processobj
+    {
+      ProcessUuid             = process_uuid;
+      ProcessCategory         = process_category;
+      ReferenceObjectid       = reference_objectid;
+      ReferenceObjectTypecode = reference_object_typecode;
+      ProcessStatusCode       = process_status_code;
+      CreatedBy               = created_by;
+      CreatedAt               = created_at;
+      ChangedAt               = changed_at;
+      BuprId                  = bupr_id;
+      BuprTypeCode            = bupr_type_code;
+      Request                 = request;
+      Response                = response;
+    }
+}
+
+define behavior for ZFSTB_I_PROCESS_LOG //alias <alias_name>
+persistent table zfstb_processlog
+lock dependent by ProcessObject
+authorization dependent by ProcessObject
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) ProcessUuid;
+  association ProcessObject;
+  action displayPayload1 result [1] $self;
+  action displayError result [1] $self;
+  mapping for zfstb_processlog
+    {
+      ProcessUuid             = process_uuid;
+      ProcessStepno           = process_stepno;
+      ProcessStepStatus       = process_step_status;
+      ReferenceObjectid       = reference_objectid;
+      ReferenceObjectTypecode = reference_object_typecode;
+      CreatedBy               = created_by;
+      CreatedAt               = created_at;
+      ChangedBy               = changed_by;
+      ChangedAt               = changed_at;
+      Request                 = request;
+      Response                = response;
+      MsgID                   = msgid;
+      MsgNo                   = msgno;
+      MsgType                 = msgtype;
+    }
+}
